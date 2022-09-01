@@ -25,7 +25,7 @@ fi
 
 echo "Starting FuseSoC Tests..."
 
-targets=$INPUT_FUSESOC_COMMAND
+targets=$INPUT_TARGETS
 
 for target in $targets
 do
