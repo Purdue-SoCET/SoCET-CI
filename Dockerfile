@@ -4,7 +4,7 @@ FROM centos:centos7.9.2009
 RUN yum install python3 -y
 RUN yum install git -y
 RUN yum install make -y
-RUN yum install verilator -y
+# RUN yum install verilator -y # TODO: ADD THIS BACK
 RUN pip3 install fusesoc
 RUN mkdir ~/.ssh
 RUN ssh-keyscan github.com >>~/.ssh/known_hosts
