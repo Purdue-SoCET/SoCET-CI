@@ -25,17 +25,15 @@ fi
 
 echo "Starting FuseSoC Tests..."
 
-echo "Debug Targets: $INPUT_TARGETS"
-
-IFS='\n' read -ra targets <<< "$INPUT_TARGETS"
-for target in "${targets[@]}"; do
-   echo "Running target: $target"
+while IFS='' read -r target
+do
+  echo "Running target: $target"
   if fusesoc $target; then
     echo "Target complete: $target"
   else
     echo "Target failed: $target"
     exit 1
   fi
-done
+done <<<"$INPUT_TARGETS"
 
 echo "...FuseSoC Tests Complete"
