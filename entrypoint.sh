@@ -19,8 +19,12 @@ targets=$INPUT_FUSESOC_COMMAND
 for target in $targets
 do
   echo "Running target: $target"
-  fusesoc $target
-  echo "Target complete: $target"
+  if fusesoc $target; then
+    echo "Target complete: $target"
+  else
+    echo "Target failed: $target"
+    exit 1
+  fi
 done
 
 echo "...FuseSoC Tests Complete"
