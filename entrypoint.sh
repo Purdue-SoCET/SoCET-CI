@@ -1,5 +1,9 @@
 #! /usr/bin/bash -l
 
+echo "Adding github.com to .ssh/known_hosts..."
+
+ssh-keyscan remote_server >>~/.ssh/known_hosts
+
 echo "Adding SSH Key..."
 
 eval $(ssh-agent -s)
