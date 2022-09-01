@@ -1,0 +1,22 @@
+name: FuseSoC Example
+on:
+  push:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3 # required
+      - name: Setup SSH passphrase
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_PASSPHRASE: ${{secrets.SSH_PASSPHRASE}}
+        run: | # provide SSH Key {optional}
+          echo $SSH_PRIVATE_KEY
+      - name: Run Regression Tests
+        uses: Purdue-SoCET/SoCET-CI@main # core usage
+        with:
+          targets: | # List all FuseSoC Test Targets
+            --help
