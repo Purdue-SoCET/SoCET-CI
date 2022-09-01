@@ -5,7 +5,7 @@ RUN yum install python3 -y
 RUN yum install git -y
 RUN pip3 install fusesoc
 RUN mkdir ~/.ssh
-RUN ssh-keyscan remote_server >>~/.ssh/known_hosts
+RUN ssh-keyscan github.com >>~/.ssh/known_hosts
 # RUN fusesoc library add digital-lib git@github.com:Purdue-SoCET/digital-lib.git
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
