@@ -10,7 +10,10 @@ ssh-add -l # debug SSH Key
 
 echo "Downloading Digital Library..."
 
-fusesoc library add digital-lib git@github.com:Purdue-SoCET/digital-lib.git
+if ![fusesoc library add digital-lib git@github.com:Purdue-SoCET/digital-lib.git]; then
+  echo "Failed to fetch digital-lib"
+  exit 1
+fi
 
 echo "Starting FuseSoC Tests..."
 
