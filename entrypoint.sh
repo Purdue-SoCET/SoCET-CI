@@ -4,9 +4,12 @@ echo "Adding SSH Key..."
 
 eval $(ssh-agent -s)
 
-echo 'echo $INPUT_SSH_PASSPHRASE' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
+echo "passphrase: $SSH_PASSPHRASE"
+echo "private key: $SSH_PRIVATE_KEY"
 
-echo "$INPUT_SSH_PRIVATE_KEY" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh-add - >/dev/null
+echo 'echo $SSH_PASSPHRASE' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
+
+echo "$SSH_PRIVATE_KEY" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh-add - >/dev/null
 
 ssh-add -l # debug SSH Key
 
