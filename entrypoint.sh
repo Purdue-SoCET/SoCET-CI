@@ -8,6 +8,10 @@ echo "$INPUT_SSH_PRIVATE_KEY" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_ask
 
 ssh-add -l # debug SSH Key
 
+echo "Downloading Digital Library..."
+
+fusesoc library add digital-lib git@github.com:Purdue-SoCET/digital-lib.git
+
 echo "Starting FuseSoC Tests..."
 
 targets=$INPUT_FUSESOC_COMMAND
