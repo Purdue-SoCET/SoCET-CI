@@ -10,7 +10,7 @@ ssh-add -l # debug SSH Key
 
 echo "Downloading Digital Library..."
 
-if ![fusesoc library add digital-lib git@github.com:Purdue-SoCET/digital-lib.git]; then
+if ! fusesoc library add digital-lib git@github.com:Purdue-SoCET/digital-lib.git ; then
   echo "Failed to fetch digital-lib"
   exit 1
 fi
