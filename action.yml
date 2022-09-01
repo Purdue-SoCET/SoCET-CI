@@ -2,10 +2,15 @@ name: 'Purdue SoCET CI'
 author: 'MArndt26'
 description: 'Continuous Integration for Open Source ASIC'
 inputs:
-  targets: # id of input
-    description: 'list of fusesoc commands to run'
+  targets:
+    description: 'list of FuseSoC commands to run'
     required: true
-    default: 'lint'
+    default: 'run lint'
+  ssh_private_key:
+    required: true
+  ssh_passphrase: # password {optional}
+    description: 'passphrase for ssh private key'
+    default: ''
 outputs:
   time: # id of output
     description: 'The time we greeted you'
