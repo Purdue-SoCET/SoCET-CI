@@ -1,9 +1,6 @@
 #! /usr/bin/bash -l
 
-echo "Adding github.com to .ssh/known_hosts..."
-
-ssh-keyscan remote_server >>~/.ssh/known_hosts
-
+# TODO: ADD THIS TO CUSTOM DOCKER CONTAINER START
 echo "Adding SSH Key..."
 
 eval $(ssh-agent -s)
@@ -16,6 +13,8 @@ echo 'echo $INPUT_SSH_PASSPHRASE' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
 echo "$INPUT_SSH_PRIVATE_KEY" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh-add - >/dev/null
 
 ssh-add -l # debug SSH Key
+
+# TODO: ADD THIS TO CUSTOM DOCKER CONTAINER END
 
 echo "Downloading Digital Library..."
 
