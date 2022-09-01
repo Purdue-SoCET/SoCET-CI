@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-push-docker-image:
-    name: Build Docker Image and push to repositories
+    name: Build Docker Image and push to repository
 
     runs-on: ubuntu-latest
 
