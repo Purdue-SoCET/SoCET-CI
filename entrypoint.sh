@@ -15,7 +15,7 @@ targets=$INPUT_FUSESOC_COMMAND
 for target in $targets
 do
   echo "Running target: $target"
-  fusesoc run $target
+  fusesoc $target
   echo "Target complete: $target"
 done
 
