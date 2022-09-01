@@ -27,7 +27,7 @@ echo "Starting FuseSoC Tests..."
 
 echo "Debug Targets: $INPUT_TARGETS"
 
-IFS=';' read -ra targets <<< "$INPUT_TARGETS"
+IFS='\n' read -ra targets <<< "$INPUT_TARGETS"
 for target in "${targets[@]}"; do
    echo "Running target: $target"
   if fusesoc $target; then
