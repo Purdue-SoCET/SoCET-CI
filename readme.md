@@ -37,5 +37,9 @@ Should you need to access remote dependencies located in private repositories, y
 
 > Note: you will need to store `SSH_PRIVATE_KEY` and `SSH_PASSPHRASE` in your projects "Actions Secrets"
 
+## Testing with ACT
+For local testing, you can user [act](https://github.com/nektos/act) to emulate the GitHub Actions cloud
+
+
 # References:
 - [SSH key in GitHub Actions](https://stackoverflow.com/questions/64953274/how-to-send-passphrase-for-ssh-add-with-github-actions)

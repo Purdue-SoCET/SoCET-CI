@@ -1,5 +1,13 @@
 #! /usr/bin/env bash -l
 
+echo "Adding SSH Key..."
+
+echo 'echo $INPUT_SSH_PASSPHRASE' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
+
+echo "$INPUT_SSH_PRIVATE_KEY" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh-add - >/dev/null
+
+ssh-add -l # debug SSH Key
+
 echo "Starting FuseSoC Tests..."
 
 targets=$INPUT_FUSESOC_COMMAND
