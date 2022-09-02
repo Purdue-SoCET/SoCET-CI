@@ -43,6 +43,7 @@ For local testing, you can user [act](https://github.com/nektos/act) to emulate 
 
 # References:
 - [SSH key in GitHub Actions](https://stackoverflow.com/questions/64953274/how-to-send-passphrase-for-ssh-add-with-github-actions)
+- [Docker Run](https://aschmelyun.com/blog/using-docker-run-inside-of-github-actions/)
 
 # TODO: 
 - figure out how to better use act for testing
