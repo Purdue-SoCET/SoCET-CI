@@ -1,15 +1,19 @@
 # Used to Build Image for ghrc
 
-# Same as Purdue ECN Servers
-FROM centos:centos7.9.2009
+FROM ubuntu:latest
 
-RUN yum install python3 -y
-RUN yum install git -y
-RUN yum install make -y
-# RUN yum install verilator -y # TODO: ADD THIS BACK
+RUN apt update
+
+RUN apt-get install git python3 -y
 RUN pip3 install fusesoc
 RUN mkdir ~/.ssh
 RUN ssh-keyscan github.com >>~/.ssh/known_hosts
+
+# Build/Install verilator from source
+COPY install_verilator.sh /tmp/install_verilator.sh
+WORKDIR "/tmp"
+RUN apt-get install git perl python3 make autoconf g++ flex bison ccache -y
+RUN bash /tmp/install_verilator.sh
 # RUN fusesoc library add digital-lib git@github.com:Purdue-SoCET/digital-lib.git
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
