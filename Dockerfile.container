@@ -1,3 +1,5 @@
+# Used to Build Image for ghrc
+
 # Same as Purdue ECN Servers
 FROM centos:centos7.9.2009
 
