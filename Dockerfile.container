@@ -10,6 +10,7 @@ RUN mkdir ~/.ssh
 RUN ssh-keyscan github.com >>~/.ssh/known_hosts
 
 # Build/Install verilator from source
+COPY ./bin /bin
 # COPY install_verilator.sh /tmp/install_verilator.sh
 # WORKDIR "/tmp"
 # RUN apk add git perl python3 make autoconf g++ flex bison ccache

@@ -29,4 +29,4 @@ autoconf         # Create ./configure script
 make -j `nproc` # Build Verilator itself
 
 cp -r verilator/bin bin/ # copy binary files
-rm -rf ./verilator # Clean up build
+# make clean
