@@ -25,9 +25,8 @@ git checkout stable      # Use most recent stable release
 
 autoconf         # Create ./configure script
 unset VERILATOR_ROOT
-./configure --prefix=/usr/bin      # Configure and create Makefile
+./configure     # Configure and create Makefile
 make -j `nproc` # Build Verilator itself
 
-cd ../
-cp -r ./verilator/bin . # copy binary files
+cp -r ./bin ../ # copy binary files
 # make clean
