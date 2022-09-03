@@ -8,4 +8,5 @@ RUN mkdir ~/.ssh
 RUN ssh-keyscan github.com >>~/.ssh/known_hosts
 
 # Copy Verilator Executables
-COPY bin /usr/bin
+# FIXME: NEED TO COMPILE BINARIES IN ALPINE FOR THIS TO WORK
+COPY bin /usr/local/bin
