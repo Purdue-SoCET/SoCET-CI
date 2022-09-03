@@ -8,5 +8,5 @@ RUN mkdir ~/.ssh
 RUN ssh-keyscan github.com >>~/.ssh/known_hosts
 
 # Copy Verilator Executables
-COPY bin /bin
+COPY bin /usr/bin
 RUN echo "export VERILATOR_ROOT=/bin" >> /etc/profile
