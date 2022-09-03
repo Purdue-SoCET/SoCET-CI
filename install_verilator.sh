@@ -15,7 +15,7 @@
 # CLI Helper Dependencies 
 # sudo apt-get install perl-doc
 
-# git clone https://github.com/verilator/verilator   # Only first time
+git clone https://github.com/verilator/verilator   # Only first time
 
 export VERILATOR_ROOT=`pwd`
 cd verilator
