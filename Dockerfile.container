@@ -7,5 +7,5 @@ RUN pip3 install fusesoc
 RUN mkdir ~/.ssh
 RUN ssh-keyscan github.com >>~/.ssh/known_hosts
 
-# Build/Install verilator from source
+# Copy Verilator Executables
 COPY bin /bin
