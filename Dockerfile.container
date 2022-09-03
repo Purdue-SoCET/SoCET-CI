@@ -14,5 +14,3 @@ COPY ./bin /bin
 # RUN apk add git perl python3 make autoconf g++ flex bison ccache
 # RUN sh /tmp/install_verilator.sh
 # RUN fusesoc library add digital-lib git@github.com:Purdue-SoCET/digital-lib.git
-
-# CMD /bin/sh
