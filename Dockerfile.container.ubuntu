@@ -3,7 +3,7 @@
 FROM ubuntu:latest
 
 RUN apt-get update
-RUN apt-get install --no-install-recommends --yes git python3 python3-pip ssh make perl g++
+RUN apt-get install --no-install-recommends --yes git python3 python3-pip ssh make perl g++ verilator
 RUN pip3 install fusesoc
 RUN mkdir ~/.ssh
 RUN ssh-keyscan github.com >>~/.ssh/known_hosts
@@ -11,6 +11,3 @@ RUN ssh-keyscan github.com >>~/.ssh/known_hosts
 # clean build dependencies
 RUN apt remove python3-pip -y
 RUN apt autoremove -y
-
-# Install Verilator
-COPY bin /usr/local/bin
