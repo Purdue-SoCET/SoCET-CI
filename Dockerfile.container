@@ -2,7 +2,7 @@
 
 FROM alpine:latest
 
-RUN apk add bash git python3 py3-pip openssh make
+RUN apk add bash git python3 py3-pip openssh make perl
 RUN pip3 install fusesoc
 RUN mkdir ~/.ssh
 RUN ssh-keyscan github.com >>~/.ssh/known_hosts
