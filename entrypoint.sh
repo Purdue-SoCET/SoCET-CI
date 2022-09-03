@@ -1,4 +1,4 @@
-#! /bin/sh -l
+#! /bin/bash -l
 
 # TODO: ADD THIS TO CUSTOM DOCKER CONTAINER START
 echo "Adding SSH Key..."
