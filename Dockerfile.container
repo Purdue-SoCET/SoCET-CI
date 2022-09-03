@@ -1,6 +1,6 @@
 # Used to Build Image for ghrc
 
-FROM apline:latest
+FROM alpine:latest
 
 RUN apk add git python3 py3-pip
 RUN pip3 install fusesoc
