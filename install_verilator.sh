@@ -17,7 +17,6 @@
 
 git clone https://github.com/verilator/verilator   # Only first time
 
-export VERILATOR_ROOT=`pwd`
 cd verilator
 git pull         # Make sure git repository is up-to-date
 #git checkout master      # Use development branch
@@ -25,9 +24,10 @@ git checkout stable      # Use most recent stable release
 #git checkout v{version}  # Switch to specified release version
 
 autoconf         # Create ./configure script
-./configure      # Configure and create Makefile
+unset VERILATOR_ROOT
+./configure --prefix=/bin      # Configure and create Makefile
 make -j `nproc` # Build Verilator itself
 
 cd ../
-cp -r ./verilator/bin bin/ # copy binary files
+cp -r ./verilator/bin . # copy binary files
 # make clean
