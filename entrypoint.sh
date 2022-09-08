@@ -28,7 +28,7 @@ echo "Starting FuseSoC Tests..."
 while IFS='' read -r target
 do
   echo "Running target: $target"
-  if fusesoc $target; then
+  if $target; then
     echo "Target complete: $target"
   else
     echo "Target failed: $target"
