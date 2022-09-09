@@ -5,13 +5,7 @@ inputs:
   targets:
     description: 'list of FuseSoC commands to run'
     required: true
-    default: 'run lint'
-  ssh_private_key:
-    description: 'used for pulling from private git repos'
-    required: true
-  ssh_passphrase: # password {optional}
-    description: 'passphrase for ssh private key'
-    default: ''
+    default: "echo 'No Test Targets Specified! && exit 1'"
 outputs:
   time: # id of output
     description: 'The time we greeted you'
