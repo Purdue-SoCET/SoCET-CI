@@ -6,31 +6,24 @@ This action uses the [FuseSoC](https://github.com/olofk/fusesoc) build system to
 ```yaml
 name: FuseSoC Example
 on:
-  pull_request:
+  pull_request: [main]
+  push: [main]
 
 jobs:
   ci:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3 # required
-    - name: Setup SSH passphrase
-      env: 
-        SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
-        SSH_PASSPHRASE: ${{secrets.SSH_PASSPHRASE}}
-      run: | # provide SSH Key {optional}
-        ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-        echo 'echo $SSH_PASSPHRASE' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
-        echo "$SSH_PRIVATE_KEY" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh-add - >/dev/null
-    - name: Show SSH key add success
-      runs: ssh-add -l # debug SSH Key {optional}
-    - name: Run Regression Tests
-      uses: Purdue-SoCET/SoCET-CI@main # core usage
-      with:
-        targets: | # List all FuseSoC Test Targets
-          verilator
-          lint
+      - name: Checkout Repository
+        uses: actions/checkout@v3 # required
+      - name: Run Regression Tests
+        uses: Purdue-SoCET/SoCET-CI@main # core usage
+        with:
+          ssh_private_key: ${{secrets.SSH_PRIVATE_KEY}}
+          ssh_passphrase: ${{secrets.SSH_PASSPHRASE}}
+          targets: | # List all Test Targets (shell commands)
+            fusesoc --cores-root . run --target sim --tool verilator socet:aft:gpio:0.1.0
+            ./shell_test.sh
 ```
 
 Should you need to access remote dependencies located in private repositories, you can add a private SSH Key to authorize Action with access.  These steps can be excluded if private access is not required.
@@ -47,4 +40,3 @@ For local testing, you can user [act](https://github.com/nektos/act) to emulate 
 
 # TODO: 
 - figure out how to better use act for testing
-- create Docker image with all needed dependencies pre-installed

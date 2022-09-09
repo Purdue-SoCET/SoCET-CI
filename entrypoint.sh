@@ -1,6 +1,5 @@
 #! /bin/bash -l
 
-# TODO: ADD THIS TO CUSTOM DOCKER CONTAINER START
 echo "Adding SSH Key..."
 
 eval $(ssh-agent -s)
@@ -14,8 +13,6 @@ echo "$INPUT_SSH_PRIVATE_KEY" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_ask
 
 ssh-add -l # debug SSH Key
 
-# TODO: ADD THIS TO CUSTOM DOCKER CONTAINER END
-
 echo "Downloading Digital Library..."
 
 if ! fusesoc library add digital-lib git@github.com:Purdue-SoCET/digital-lib.git ; then
@@ -23,7 +20,7 @@ if ! fusesoc library add digital-lib git@github.com:Purdue-SoCET/digital-lib.git
   exit 1
 fi
 
-echo "Starting FuseSoC Tests..."
+echo "Starting Tests..."
 
 while IFS='' read -r target
 do
@@ -36,4 +33,4 @@ do
   fi
 done <<<"$INPUT_TARGETS"
 
-echo "...FuseSoC Tests Complete"
+echo "...Tests Complete"
