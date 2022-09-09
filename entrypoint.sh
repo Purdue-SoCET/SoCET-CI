@@ -1,25 +1,5 @@
 #! /bin/bash -l
 
-echo "Adding SSH Key..."
-
-eval $(ssh-agent -s)
-
-echo "passphrase: $INPUT_SSH_PASSPHRASE"
-echo "private key: $INPUT_SSH_PRIVATE_KEY"
-
-echo 'echo $INPUT_SSH_PASSPHRASE' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
-
-echo "$INPUT_SSH_PRIVATE_KEY" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh-add - >/dev/null
-
-ssh-add -l # debug SSH Key
-
-echo "Downloading Digital Library..."
-
-if ! fusesoc library add digital-lib git@github.com:Purdue-SoCET/digital-lib.git ; then
-  echo "Failed to fetch digital-lib: ensure that SSH key is added to repository secrets"
-  exit 1
-fi
-
 echo "Starting Tests..."
 
 while IFS='' read -r target
