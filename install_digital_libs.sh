@@ -2,6 +2,8 @@
 
 echo "Setting up ssh key"
 
+cd $GITHUB_WORKSPACE
+
 KEY_FILE="/run/secrets/SSH_PRIVATE_KEY"
 PHRASE_FILE="/run/secrets/SSH_PASSPHRASE"
 
