@@ -12,9 +12,7 @@ RUN ssh-keyscan github.com >>~/.ssh/known_hosts
 RUN apt remove python3-pip -y
 RUN apt autoremove -y
 
-COPY install_digital_libs.sh /github/workspace/install_digital_libs.sh
-
-WORKDIR /github/workspace
+COPY install_digital_libs.sh /install_digital_libs.sh
 
 # install digital libs using ssh key
 RUN --mount=type=secret,id=SSH_PRIVATE_KEY \
