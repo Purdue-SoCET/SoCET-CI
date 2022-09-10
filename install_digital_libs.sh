@@ -1,3 +1,5 @@
+#! /bin/bash -l
+
 echo "Setting up ssh key"
 
 KEY_FILE="/run/secrets/SSH_PRIVATE_KEY"
