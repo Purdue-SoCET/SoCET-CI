@@ -1,5 +1,9 @@
 #! /bin/bash -l
 
+echo "Moving fusesoc libs to $GITHUB_WORKSPACE"
+mv /fusesoc.conf $GITHUB_WORKSPACE
+mv /fusesoc_libraries $GITHUB_WORKSPACE
+
 echo "Starting Tests..."
 
 while IFS='' read -r target
