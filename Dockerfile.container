@@ -15,8 +15,6 @@ RUN apt autoremove -y
 # install digital libs using ssh key
 RUN --mount=type=secret,id=SSH_PRIVATE_KEY \
     --mount=type=secret,id=SSH_PASSPHRASE \
-    export SSH_PRIVATE_KEY=$(cat /run/secrets/SSH_PRIVATE_KEY) && \
-    export SSH_PASSPHRASE=$(cat /run/secrets/SSH_PASSPHRASE) && \
     ./install_digital_libs.sh
 
 # no entrypoint, start container in shell
