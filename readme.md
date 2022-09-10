@@ -26,9 +26,7 @@ jobs:
             ./shell_test.sh
 ```
 
-Should you need to access remote dependencies located in private repositories, you can add a private SSH Key to authorize Action with access.  These steps can be excluded if private access is not required.
-
-> Note: you will need to store `SSH_PRIVATE_KEY` and `SSH_PASSPHRASE` in your projects "Actions Secrets"
+> Note: the `targets` input can be any valid shell command or shell script and doesn't need to be related to fusesoc, verilator, etc...
 
 ## Testing with ACT
 For local testing, you can user [act](https://github.com/nektos/act) to emulate the GitHub Actions cloud
