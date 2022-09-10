@@ -30,9 +30,6 @@ if ! fusesoc library add digital-lib git@github.com:Purdue-SoCET/digital-lib.git
   exit 1
 fi
 
-echo "List Files Debug"
-ls
-
 echo "Removing ssh key"
 
 rm -r ~/.ssh

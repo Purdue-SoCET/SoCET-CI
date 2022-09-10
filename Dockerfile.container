@@ -14,6 +14,8 @@ RUN apt autoremove -y
 
 COPY install_digital_libs.sh /install_digital_libs.sh
 
+WORKDIR /home
+
 # install digital libs using ssh key
 RUN --mount=type=secret,id=SSH_PRIVATE_KEY \
     --mount=type=secret,id=SSH_PASSPHRASE \
