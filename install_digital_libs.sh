@@ -30,6 +30,13 @@ if ! fusesoc library add digital-lib git@github.com:Purdue-SoCET/digital-lib.git
   exit 1
 fi
 
+echo "Downloading Bus Components..."
+
+if ! fusesoc library add bus-components git@github.com:Purdue-SoCET/bus-components.git ; then
+    error_print "Failed to fetch bus-components: ensure that ssh key is set up for repository permissions"
+    exit 1
+fi
+
 echo "Removing ssh key"
 
 rm -r ~/.ssh
