@@ -13,7 +13,7 @@ RUN apt remove python3-pip -y
 RUN apt autoremove -y
 
 RUN pwd
-RUN ls ..
+RUN ls -ltra ../*
 COPY install_digital_libs.sh /install_digital_libs.sh
 
 # install digital libs using ssh key
