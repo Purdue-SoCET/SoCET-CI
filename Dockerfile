@@ -1,6 +1,6 @@
 # Used for GitHub Action
 
-FROM verilator/verilator:5.028
+FROM verilator/verilator:v5.028
 
 RUN apt-get update
 RUN apt-get install --no-install-recommends --yes git python3 python3-pip ssh make perl g++ zlib1g-dev
