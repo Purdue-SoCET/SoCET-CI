@@ -14,4 +14,10 @@ RUN apt autoremove -y
 
 COPY entrypoint.sh /entrypoint.sh
 
+COPY install_digital_libs.sh /install_digital_libs.sh
+
+# install digital libs using ssh key
+RUN --mount=type=secret,id=SSH_PRIVATE_KEY \
+    --mount=type=secret,id=SSH_PASSPHRASE
+
 ENTRYPOINT ["/entrypoint.sh"]
