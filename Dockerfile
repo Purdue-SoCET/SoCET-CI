@@ -1,6 +1,6 @@
 # Used for GitHub Action
 
-FROM ghcr.io/purdue-socet/socet-ci:main
+FROM verilator/verilator:latest
 
 COPY entrypoint.sh /entrypoint.sh
 
