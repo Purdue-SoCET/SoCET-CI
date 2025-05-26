@@ -1,6 +1,6 @@
 # Used for GitHub Action
 
-FROM verilator/verilator:v5.028
+FROM ghcr.io/purdue-socet/socet-ci:63-fix-cicd
 
 RUN apt-get update
 RUN apt-get install --no-install-recommends --yes git python3 python3-pip ssh make perl g++ zlib1g-dev
