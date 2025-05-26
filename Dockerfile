@@ -18,6 +18,7 @@ COPY install_digital_libs.sh /install_digital_libs.sh
 
 # install digital libs using ssh key
 RUN --mount=type=secret,id=SSH_PRIVATE_KEY \
-    --mount=type=secret,id=SSH_PASSPHRASE
+    --mount=type=secret,id=SSH_PASSPHRASE \
+    /entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+# ENTRYPOINT ["/entrypoint.sh"]
