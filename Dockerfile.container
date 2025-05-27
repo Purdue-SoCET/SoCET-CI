@@ -3,7 +3,7 @@
 FROM runtimeverificationinc/riscv-gnu-toolchain:ubuntu-jammy-2024.04.12
 
 RUN apt-get update
-RUN apt-get install --no-install-recommends --yes git python3 python3-pip ssh make verilator=v5.014 perl g++ zlib1g-dev
+RUN apt-get install --no-install-recommends --yes git python3 python3-pip ssh make verilator perl g++ zlib1g-dev
 RUN pip3 install fusesoc==2.3 PyYAML argparse
 RUN mkdir ~/.ssh
 RUN ssh-keyscan github.com >>~/.ssh/known_hosts
