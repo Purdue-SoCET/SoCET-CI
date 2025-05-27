@@ -1,6 +1,6 @@
 # Used to Build Image for ghrc
 
-FROM verilator/verilator:latest
+FROM verilator/verilator:v5.014
 
 RUN apt-get update
 RUN apt-get install --no-install-recommends --yes git python3 python3-pip ssh make perl g++ zlib1g-dev
