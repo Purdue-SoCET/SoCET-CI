@@ -12,11 +12,10 @@ RUN ssh-keyscan github.com >>~/.ssh/known_hosts
 RUN apt remove python3-pip -y
 RUN apt autoremove -y
 
-# COPY install_digital_libs.sh /install_digital_libs.sh
+COPY install_digital_libs.sh /install_digital_libs.sh
 
-# # install digital libs using ssh key
-# RUN --mount=type=secret,id=SSH_PRIVATE_KEY \
-#     --mount=type=secret,id=SSH_PASSPHRASE \
-#     /install_digital_libs.sh
+# install digital libs using ssh key
+RUN --mount=type=secret,id=SSH_PRIVATE_KEY \
+    /install_digital_libs.sh
 
 # no entrypoint, start container in shell
