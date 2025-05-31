@@ -14,7 +14,7 @@ FROM fedora:rawhide
 # RUN apt autoremove -y
 
 # Fedora commands
-RUN dnf install git python3 python3-pip ssh make verilator perl g++ zlib1g-dev
+RUN dnf install -y git python3 python3-pip ssh make verilator perl g++ zlib-devel
 RUN pip3 install fusesoc==2.3 PyYAML argparse
 RUN mkdir ~/.ssh
 RUN ssh-keyscan github.com >>~/.ssh/known_hosts
