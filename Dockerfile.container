@@ -26,7 +26,7 @@ RUN alias riscv64-unknown-elf-gcc='riscv64-linux-gnu-gcc'
 
 RUN alias -p
 
-RUN riscv64-linux-gnu-gcc --version
+RUN riscv64-linux-gnu-gcc --help
 
 RUN riscv64-unknown-elf-gcc --version
 
