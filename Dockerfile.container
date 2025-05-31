@@ -14,10 +14,12 @@ FROM fedora:rawhide
 # RUN apt autoremove -y
 
 # Fedora commands
-RUN dnf install -y git python3 python3-pip ssh make verilator perl g++ zlib-devel
+RUN dnf install -y git python3 python3-pip ssh make verilator perl g++ zlib-devel gcc-riscv64-linux-gnu
 RUN pip3 install fusesoc==2.3 PyYAML argparse
 RUN mkdir ~/.ssh
 RUN ssh-keyscan github.com >>~/.ssh/known_hosts
+
+RUN which riscv64-unknown-elf-gcc
 
 COPY install_digital_libs.sh /install_digital_libs.sh
 
