@@ -26,10 +26,9 @@ RUN apt-get install --no-install-recommends --yes autoconf automake autotools-de
 
 # make a new directory to house toolchain and change dirs
 RUN mkdir -p /opt/riscv
-RUN cd /opt/riscv
 
 # add bin to $PATH
-RUN export PATH=$PATH:/work/riscv-gnu-toolchain/bin
+RUN export PATH=$PATH:/opt/riscv
 
 # clone latest riscv-toolchain
 RUN git clone https://github.com/riscv/riscv-gnu-toolchain
@@ -40,8 +39,14 @@ RUN git clone https://github.com/riscv/riscv-gnu-toolchain
 WORKDIR riscv-gnu-toolchain
 RUN pwd
 RUN ls -ltra
-RUN ./configure --prefix=/work/riscv-gnu-toolchain
+RUN ./configure --prefix=/opt/riscv
 RUN make linux
+
+# remove the riscv toolchain dir
+# HACK: remove if default dir is not work
+WORKDIR /work
+RUN rm -rf riscv-gnu-toolchain
+
 
 # Fedora commands
 # FROM fedora:rawhide
