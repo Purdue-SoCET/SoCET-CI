@@ -19,7 +19,7 @@ RUN pip3 install fusesoc==2.3 PyYAML argparse
 RUN mkdir ~/.ssh
 RUN ssh-keyscan github.com >>~/.ssh/known_hosts
 
-RUN which riscv64-unknown-elf-gcc
+RUN riscv64-unknown-elf-gcc --version
 
 COPY install_digital_libs.sh /install_digital_libs.sh
 
