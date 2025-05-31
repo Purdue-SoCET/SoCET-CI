@@ -24,6 +24,10 @@ RUN ssh-keyscan github.com >>~/.ssh/known_hosts
 
 RUN alias riscv64-unknown-elf-gcc='riscv64-linux-gnu-gcc'
 
+RUN alias
+
+RUN riscv64-linux-gnu-gcc --version
+
 RUN riscv64-unknown-elf-gcc --version
 
 COPY install_digital_libs.sh /install_digital_libs.sh
