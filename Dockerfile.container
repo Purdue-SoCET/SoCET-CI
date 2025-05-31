@@ -29,7 +29,7 @@ RUN mkdir -p /opt/riscv
 RUN cd /opt/riscv
 
 # add bin to $PATH
-RUN export PATH=$PATH:/opt/riscv/bin
+RUN export PATH=$PATH:/work/riscv-gnu-toolchain/bin
 
 # clone latest riscv-toolchain
 RUN git clone https://github.com/riscv/riscv-gnu-toolchain
@@ -39,7 +39,8 @@ RUN git clone https://github.com/riscv/riscv-gnu-toolchain
 # RUN /build_riscv_toolchain.sh
 RUN pwd
 RUN ls -ltra
-RUN ./configure --prefix=/opt/riscv
+WORKDIR "/riscv-gnu-toolchain"
+RUN ./configure --prefix=/work/riscv-gnu-toolchain
 RUN make linux
 
 # Fedora commands
