@@ -4,10 +4,16 @@ echo "Moving fusesoc libs to $GITHUB_WORKSPACE"
 mv /fusesoc.conf $GITHUB_WORKSPACE
 mv /fusesoc_libraries $GITHUB_WORKSPACE
 
+cp /opt/riscv/riscv64-unknown-linux-gnu-gcc $GITHUB_WORKSPACE/riscv64-unknown-elf-gcc
+cp /opt/riscv/riscv64-unknown-linux-gnu-objdump $GITHUB_WORKSPACE/riscv64-unknown-elf-objdump
+cp /opt/riscv/riscv64-unknown-linux-gnu-obycopy $GITHUB_WORKSPACE/riscv64-unknown-elf-objcopy
+
 # debug
 ls -ltra /*
 
 ls -ltra /opt/riscv/*
+
+ls $GITHUB_WORKSPACE
 
 # export PATH=$PATH:/opt/riscv/bin
 
@@ -15,7 +21,7 @@ ls -ltra /opt/riscv/*
 # alias riscv64-unknown-elf-objdump='riscv64-unknown-linux-gnu-objdump'
 # alias riscv64-unknown-elf-objcopy='riscv64-unknown-linux-gnu-objcopy'
 
-alias
+# alias
 
 echo "Starting Tests..."
 
