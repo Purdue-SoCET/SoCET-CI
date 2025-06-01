@@ -1,28 +1,20 @@
 #! /bin/bash -l
 
 echo "Moving fusesoc libs to $GITHUB_WORKSPACE"
-mv /fusesoc.conf $GITHUB_WORKSPACE
-mv /fusesoc_libraries $GITHUB_WORKSPACE
+mv /work/fusesoc.conf $GITHUB_WORKSPACE
+mv /work/fusesoc_libraries $GITHUB_WORKSPACE
 
-cp /opt/riscv/bin/riscv64-unknown-linux-gnu-gcc $GITHUB_WORKSPACE/riscv64-unknown-elf-gcc
-cp /opt/riscv/bin/riscv64-unknown-linux-gnu-objdump $GITHUB_WORKSPACE/riscv64-unknown-elf-objdump
-cp /opt/riscv/bin/riscv64-unknown-linux-gnu-objcopy $GITHUB_WORKSPACE/riscv64-unknown-elf-objcopy
+# making symbolic links
+ln -s /opt/riscv/bin/riscv64-unknown-linux-gnu-gcc $GITHUB_WORKSPACE/riscv64-unknown-elf-gcc
+ln -s /opt/riscv/bin/riscv64-unknown-linux-gnu-objdump $GITHUB_WORKSPACE/riscv64-unknown-elf-objdump
+ln -s /opt/riscv/bin/riscv64-unknown-linux-gnu-objcopy $GITHUB_WORKSPACE/riscv64-unknown-elf-objcopy
 
 # debug
-ls -ltra /*
-
-ls -ltra /opt/riscv/*
-
 ls $GITHUB_WORKSPACE
 
-export PATH=$PATH:$GITHUB_WORKSPACE
-# export PATH=$PATH:/opt/riscv/bin
-
-# alias riscv64-unknown-elf-gcc='riscv64-unknown-linux-gnu-gcc'
-# alias riscv64-unknown-elf-objdump='riscv64-unknown-linux-gnu-objdump'
-# alias riscv64-unknown-elf-objcopy='riscv64-unknown-linux-gnu-objcopy'
-
-# alias
+# putting workspace on path
+# a REAL hack, but this works I believe
+export PATH=$PATH:/opt/riscv/bin:$GITHUB_WORKSPACE
 
 echo "Starting Tests..."
 
