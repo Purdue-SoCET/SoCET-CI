@@ -11,13 +11,11 @@ ls -ltra /opt/riscv/*
 
 # export PATH=$PATH:/opt/riscv/bin
 
-alias riscv64-unknown-elf-gcc='riscv64-unknown-linux-gnu-gcc'
-alias riscv64-unknown-elf-objdump='riscv64-unknown-linux-gnu-objdump'
-alias riscv64-unknown-elf-objcopy='riscv64-unknown-linux-gnu-objcopy'
+# alias riscv64-unknown-elf-gcc='riscv64-unknown-linux-gnu-gcc'
+# alias riscv64-unknown-elf-objdump='riscv64-unknown-linux-gnu-objdump'
+# alias riscv64-unknown-elf-objcopy='riscv64-unknown-linux-gnu-objcopy'
 
 alias
-
-ln -s ()
 
 echo "Starting Tests..."
 
