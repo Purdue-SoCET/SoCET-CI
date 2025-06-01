@@ -62,6 +62,6 @@ RUN rm -rf riscv-gnu-toolchain
 
 # RUN riscv64-linux-gnu-gcc --help
 
-RUN riscv64-unknown-elf-gcc --version
+# RUN riscv64-unknown-elf-gcc --version
 
 # no entrypoint, start container in shell
