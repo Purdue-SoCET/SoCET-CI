@@ -15,6 +15,7 @@ ls -ltra /opt/riscv/*
 
 ls $GITHUB_WORKSPACE
 
+export PATH=$PATH:$GITHUB_WORKSPACE
 # export PATH=$PATH:/opt/riscv/bin
 
 # alias riscv64-unknown-elf-gcc='riscv64-unknown-linux-gnu-gcc'
