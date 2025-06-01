@@ -6,7 +6,7 @@ mv /fusesoc_libraries $GITHUB_WORKSPACE
 
 cp /opt/riscv/bin/riscv64-unknown-linux-gnu-gcc $GITHUB_WORKSPACE/riscv64-unknown-elf-gcc
 cp /opt/riscv/bin/riscv64-unknown-linux-gnu-objdump $GITHUB_WORKSPACE/riscv64-unknown-elf-objdump
-cp /opt/riscv/bin/riscv64-unknown-linux-gnu-obycopy $GITHUB_WORKSPACE/riscv64-unknown-elf-objcopy
+cp /opt/riscv/bin/riscv64-unknown-linux-gnu-objcopy $GITHUB_WORKSPACE/riscv64-unknown-elf-objcopy
 
 # debug
 ls -ltra /*
