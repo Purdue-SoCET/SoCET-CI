@@ -39,29 +39,18 @@ RUN git clone https://github.com/riscv/riscv-gnu-toolchain
 WORKDIR riscv-gnu-toolchain
 RUN pwd
 RUN ls -ltra
-RUN ./configure --prefix=/opt/riscv
-RUN make linux
+# RUN ./configure --prefix=/opt/riscv --enable-multilib
+# RUN make
 
 # remove the riscv toolchain dir
 # HACK: remove if default dir is not work
-WORKDIR /work
-RUN rm -rf riscv-gnu-toolchain
+# WORKDIR /work
+# RUN rm -rf riscv-gnu-toolchain
 
+RUN cd .. && rm -rf riscv-gnu-toolchain
+RUN pwd
+RUN ls -ltra
 
-# Fedora commands
-# FROM fedora:rawhide
-
-# RUN dnf install -y git python3 python3-pip ssh make verilator perl g++ zlib-devel gcc-riscv64-linux-gnu
-# RUN pip3 install fusesoc==2.3 PyYAML argparse
-# RUN mkdir ~/.ssh
-# RUN ssh-keyscan github.com >>~/.ssh/known_hosts
-
-# RUN alias riscv64-unknown-elf-gcc='riscv64-linux-gnu-gcc'
-
-# RUN alias -p
-
-# RUN riscv64-linux-gnu-gcc --help
-
-# RUN riscv64-unknown-elf-gcc --version
+RUN riscv64-unknown-elf-gcc --version
 
 # no entrypoint, start container in shell
