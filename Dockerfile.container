@@ -40,7 +40,7 @@ RUN apt remove python3-pip autoconf automake autotools-dev curl python3-tomli li
 RUN apt autoremove --purge -y
 
 # ensure we have the CORRECT libraries
-RUN apt-get install --no-install-recommends --yes git python3 ssh make verilator perl g++ zlib1g-dev
+RUN apt-get install --no-install-recommends --yes git python3 ssh make perl g++ zlib1g-dev
 
 RUN riscv64-unknown-elf-gcc --version
 
