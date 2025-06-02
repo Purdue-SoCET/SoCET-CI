@@ -32,7 +32,7 @@ cd riscv-gnu-toolchain
 
 echo "Building riscv64-unknown-elf-* from toolchain"
 ./configure --prefix=/opt/riscv --enable-multilib --with-languages=c,c++
-# make
+make
 
 echo "Removing riscv-gnu-toolchain directory"
 cd ..

@@ -52,6 +52,6 @@ RUN cd / && (du  -sh  .*  *  |  sort  -n)
 RUN cd /opt && (du  -sh  .*  *  |  sort  -n)
 RUN cd /work && (du  -sh  .*  *  |  sort  -n)
 
-RUN riscv64-unknown-elf-gcc --version
+# RUN riscv64-unknown-elf-gcc --version
 
 # no entrypoint, start container in shell
