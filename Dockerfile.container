@@ -28,9 +28,9 @@ RUN git clone https://github.com/riscv/riscv-gnu-toolchain
 
 # build
 WORKDIR riscv-gnu-toolchain
-RUN ./configure --prefix=/opt/riscv --enable-multilib
-RUN make
-RUN du  -sk  .??*  *  |  sort  -n
+RUN ./configure --prefix=/opt/riscv --enable-multilib --with-languages=c,c++
+# RUN make
+RUN du  -sh  .*  *  |  sort  -n
 
 # remove the riscv toolchain dir
 # HACK: update if /work is no longer the base directory
@@ -41,10 +41,10 @@ RUN rm -rf riscv-gnu-toolchain
 RUN apt remove python3-pip autoconf automake autotools-dev curl python3-tomli libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc libexpat-dev ninja-build cmake libglib2.0-dev libslirp-dev -y
 RUN apt autoremove --purge -y
 
-RUN cd / && (du  -sk  .??*  *  |  sort  -n)
-RUN cd /opt && (du  -sk  .??*  *  |  sort  -n)
-RUN cd /work && (du  -sk  .??*  *  |  sort  -n)
+RUN cd / && (du  -sh  .*  *  |  sort  -n)
+RUN cd /opt && (du  -sh  .*  *  |  sort  -n)
+RUN cd /work && (du  -sh  .*  *  |  sort  -n)
 
-# RUN riscv64-unknown-elf-gcc --version
+RUN riscv64-unknown-elf-gcc --version
 
 # no entrypoint, start container in shell
