@@ -21,8 +21,10 @@ RUN --mount=type=secret,id=SSH_PRIVATE_KEY \
 RUN mkdir -p /opt/riscv
 
 # build from script
+RUN ls -ltra
+RUN pwd
 RUN --mount=type=secret,id=SSH_PRIVATE_KEY \
-    install_riscv_gnu_toolchain.sh
+    ./install_riscv_gnu_toolchain.sh
 
 # # add bin to $PATH
 # RUN export PATH=$PATH:/opt/riscv
