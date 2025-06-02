@@ -2,6 +2,10 @@
 
 FROM ghcr.io/purdue-socet/socet-ci:63-fix-cicd
 
+RUN echo "alias pushd='cd'" >> ~/.bashrc
+
+RUN echo "alias popd='cd ..'" >> ~/.bashrc
+
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
