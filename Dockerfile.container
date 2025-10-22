@@ -1,22 +1,52 @@
+# syntax=docker/dockerfile:1.7
 # Used to Build Image for ghrc
 
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
-RUN apt-get update
-RUN apt-get install --no-install-recommends --yes git python3 python3-pip ssh make perl g++ verilator zlib1g-dev
-RUN pip3 install fusesoc PyYAML argparse
-RUN mkdir ~/.ssh
-RUN ssh-keyscan github.com >>~/.ssh/known_hosts
+ARG DEBIAN_FRONTEND=noninteractive
+ARG FUSESOC_VERSION=2.3.0
+ARG VERILATOR_VERSION=v5.036
+ARG PYTHON_VERSION=3.10
 
-# clean build dependencies
-RUN apt remove python3-pip -y
-RUN apt autoremove -y
+#Base packages
+RUN --mount=type=cache,target=/var/cache/apt \
+    --mount=type=cache,target=/var/lib/apt \
+    apt-get update && apt-get install -y --no-install-recommends \
+        git python${PYTHON_VERSION} python3-pip ssh make perl g++ \
+        autoconf flex bison libfl2 libfl-dev \
+        libgoogle-perftools-dev libevent-dev zlib1g-dev \
+        libboost-all-dev \
+        ccache pkg-config curl ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
+# FuseSoC and python installation 
+RUN --mount=type=cache,target=/root/.cache/pip \
+    python3 -m pip install --upgrade pip \
+&& python3 -m pip install "fusesoc==${FUSESOC_VERSION}" PyYAML
+
+#Build Verilator 
+RUN --mount=type=cache,target=/root/.cache \
+    git clone --depth 1 --branch ${VERILATOR_VERSION} https://github.com/verilator/verilator.git /tmp/verilator \
+&& cd /tmp/verilator && autoconf && ./configure \
+&& make -j"$(nproc)" && make install \
+&& rm -rf /tmp/verilator
+
+# ssh setup
+RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh \
+&& ssh-keyscan github.com >> /root/.ssh/known_hosts
+
+#ccache for future C/C++ compiles
+ENV PATH="/usr/lib/ccache:${PATH}"
+ENV CCACHE_DIR=/root/.ccache
+
+#script execution 
 COPY install_digital_libs.sh /install_digital_libs.sh
+RUN chmod +x /install_digital_libs.sh
 
 # install digital libs using ssh key
 RUN --mount=type=secret,id=SSH_PRIVATE_KEY \
     --mount=type=secret,id=SSH_PASSPHRASE \
-    ./install_digital_libs.sh
+    /install_digital_libs.sh
 
 # no entrypoint, start container in shell
+CMD ["/bin/bash"]
