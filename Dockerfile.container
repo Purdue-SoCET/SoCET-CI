@@ -1,12 +1,13 @@
 # syntax=docker/dockerfile:1.7
 # Used to Build Image for ghrc
 
-FROM ubuntu:22.04
+FROM verilator/verilator:v5.036
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG FUSESOC_VERSION=2.3.0
-ARG VERILATOR_VERSION=v5.036
 ARG PYTHON_VERSION=3.10
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 #Base packages
 RUN --mount=type=cache,target=/var/cache/apt \
@@ -24,13 +25,6 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     python3 -m pip install --upgrade pip \
 && python3 -m pip install "fusesoc==${FUSESOC_VERSION}" PyYAML
 
-#Build Verilator 
-RUN --mount=type=cache,target=/root/.cache \
-    git clone --depth 1 --branch ${VERILATOR_VERSION} https://github.com/verilator/verilator.git /tmp/verilator \
-&& cd /tmp/verilator && autoconf && ./configure \
-&& make -j"$(nproc)" && make install \
-&& rm -rf /tmp/verilator
-
 # ssh setup
 RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh \
 && ssh-keyscan github.com >> /root/.ssh/known_hosts
@@ -41,12 +35,11 @@ ENV CCACHE_DIR=/root/.ccache
 
 #script execution 
 COPY install_digital_libs.sh /install_digital_libs.sh
-RUN chmod +x /install_digital_libs.sh
+RUN chmod +x ./install_digital_libs.sh
 
 # install digital libs using ssh key
 RUN --mount=type=secret,id=SSH_PRIVATE_KEY \
     --mount=type=secret,id=SSH_PASSPHRASE \
-    /install_digital_libs.sh
-
+    ./install_digital_libs.sh
 # no entrypoint, start container in shell
 CMD ["/bin/bash"]
