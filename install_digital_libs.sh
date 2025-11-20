@@ -25,16 +25,32 @@ ssh-add -l # debug SSH Key
 
 echo "Downloading Digital Library..."
 
-if ! fusesoc library add digital-lib git@github.com:Purdue-SoCET/digital-lib.git ; then
-  echo "Failed to fetch digital-lib: ensure that SSH key is added to repository secrets"
-  exit 1
+if [ -f "$KEY_FILE" ]; then
+    echo "SSH key found. cloning digital-lib via SSH..."
+    fusesoc library add digital-lib git@github.com:Purdue-SoCET/digital-lib.git || {
+        echo "Failed to fetch digital-lib using SSH."
+        exit 1
+    }
+else
+    echo "Cloning digital-lib via HTTPS..."
+    fusesoc library add digital-lib https://github.com/Purdue-SoCET/digital-lib.git || {
+        echo "HTTPS clone failed, continuing locally."
+    }
 fi
 
 echo "Downloading Bus Components..."
 
-if ! fusesoc library add bus-components git@github.com:Purdue-SoCET/bus-components.git ; then
-    error_print "Failed to fetch bus-components: ensure that ssh key is set up for repository permissions"
-    exit 1
+if [ -f "$KEY_FILE" ]; then
+    echo "SSH key found, cloning bus-components via SSH..."
+    fusesoc library add bus-components git@github.com:Purdue-SoCET/bus-components.git || {
+        echo "Failed to fetch bus, components using SSH."
+        exit 1
+    }
+else
+    echo "No SSH key, cloning bus-components via HTTPS..."
+    fusesoc library add bus-components https://github.com/Purdue-SoCET/bus-components.git || {
+        echo "HTTPS clone failed, continuing (local mode)."
+    }
 fi
 
 echo "Removing ssh key"
