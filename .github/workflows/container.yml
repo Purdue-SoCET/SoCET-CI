@@ -8,6 +8,8 @@ on:
     branches: [main]
   schedule: # rebuild container every day at 7 UTC (3AM EST)
     - cron: '0 7 * * *'
+  workflow_dispatch:
+
 
 env:
   REGISTRY: ghcr.io
