@@ -60,4 +60,4 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           secrets: |
-            "SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY }}"
+            "SSH_PRIVATE_KEY=${{ secrets.WRCUNNIN_SSH_PRIVATE_KEY }}"
