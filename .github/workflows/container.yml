@@ -1,17 +1,24 @@
 name: Build and Publish Docker Image
 on:
   push:
-    branches: [main]
+    branches: [main, ci/container-updates]
     # Publish semver tags as releases.
     tags: ['v*.*.*']
   pull_request:
     branches: [main]
   schedule: # rebuild container every day at 7 UTC (3AM EST)
     - cron: '0 7 * * *'
+  workflow_dispatch:
+
 
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+
+concurrency: 
+  group: docker -${{ github.ref }}
+  cancel-in-progress: true 
+
 
 jobs:
   build:
@@ -53,5 +60,4 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           secrets: |
-            "SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY }}"
-            "SSH_PASSPHRASE=${{ secrets.SSH_PASSPHRASE }}"
+            "SSH_PRIVATE_KEY=${{ secrets.WRCUNNIN_SSH_PRIVATE_KEY }}"
