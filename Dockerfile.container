@@ -33,13 +33,13 @@ RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh \
 ENV PATH="/usr/lib/ccache:${PATH}"
 ENV CCACHE_DIR=/root/.ccache
 
-#script execution 
-COPY install_digital_libs.sh /install_digital_libs.sh
-RUN chmod +x /install_digital_libs.sh
+# #script execution 
+# COPY install_digital_libs.sh /install_digital_libs.sh
+# RUN chmod +x /install_digital_libs.sh
 
-# install digital libs using ssh key
-RUN --mount=type=secret,id=SSH_PRIVATE_KEY \
-     /install_digital_libs.sh
+# # install digital libs using ssh key
+# RUN --mount=type=secret,id=SSH_PRIVATE_KEY \
+#      /install_digital_libs.sh
      
 # no entrypoint, start container in shell
 CMD ["/bin/bash"]
