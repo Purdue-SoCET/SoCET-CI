@@ -9,16 +9,23 @@ ARG PYTHON_VERSION=3.10
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-#Base packages
+# Base packages
 RUN --mount=type=cache,target=/var/cache/apt \
     --mount=type=cache,target=/var/lib/apt \
     apt-get update && apt-get install -y --no-install-recommends \
-        git python${PYTHON_VERSION} python3-pip ssh make perl g++ \
+        git python${PYTHON_VERSION} python3-pip ssh make perl gcc g++ \
         autoconf flex bison libfl2 libfl-dev \
         libgoogle-perftools-dev libevent-dev zlib1g-dev \
         libboost-all-dev \
         ccache pkg-config curl ca-certificates \
+        cmake psmisc \
+        gcc-riscv64-unknown-elf binutils-riscv64-unknown-elf \
     && rm -rf /var/lib/apt/lists/*
+
+# Ensure riscv64-unknown-elf-gcc symlink exists if needed
+RUN if ! command -v riscv64-unknown-elf-gcc >/dev/null 2>&1; then \
+        ln -s $(which riscv64-unknown-elf-gcc || which riscv64-linux-gnu-gcc) /usr/local/bin/riscv64-unknown-elf-gcc; \
+    fi
 
 # FuseSoC and python installation 
 RUN --mount=type=cache,target=/root/.cache/pip \
