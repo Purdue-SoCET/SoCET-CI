@@ -1,7 +1,7 @@
 name: Build and Publish Docker Image
 on:
   push:
-    branches: [main, ci/container-updates]
+    branches: [main, ci/container-updates, AFT-sw-tests]
     # Publish semver tags as releases.
     tags: ['v*.*.*']
   pull_request:
