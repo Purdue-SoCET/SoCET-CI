@@ -13,7 +13,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN --mount=type=cache,target=/var/cache/apt \
     --mount=type=cache,target=/var/lib/apt \
     apt-get update && apt-get install -y --no-install-recommends \
-        software-properties-common ca-certificates \
+        software-properties-common gnupg gpg-agent dirmngr ca-certificates \
     && add-apt-repository -y ppa:ubuntu-toolchain-r/test \
     && apt-get update && apt-get install -y --no-install-recommends \
         git python${PYTHON_VERSION} python3-pip ssh make perl \
